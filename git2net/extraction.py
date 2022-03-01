@@ -1313,8 +1313,8 @@ def _process_repo_parallel(git_repo_dir, sqlite_db_file, commits,
     with multiprocessing.Pool(extraction_settings['no_of_processes'],
                               initializer=_init,
                               initargs=(git_repo_dir, git_init_lock)) as p:
-        with tqdm(total=len(args), desc='Parallel ({0} processes)'
-                  .format(extraction_settings['no_of_processes'])) as pbar:
+        with tqdm(total=len(args), 
+            desc='Parallel ({0} processes)'.format(extraction_settings['no_of_processes'])) as pbar:
             for result in p.imap_unordered(
                 _process_commit, args,
                     chunksize=extraction_settings['chunksize']):
